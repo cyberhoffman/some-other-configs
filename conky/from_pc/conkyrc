@@ -1,0 +1,59 @@
+conky.config = {
+-- -- Conky settings -- #
+	background = false,
+	update_interval = 1,
+
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+
+	override_utf8_locale = true,
+
+	double_buffer = true,
+	no_buffers = true,
+
+	text_buffer_size = 32768,
+	imlib_cache_size = 0,
+
+-- -- Window specifications -- #s
+	own_window = true,
+	own_window_type = 'panel',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 120,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	minimum_width = 1310,
+	minimum_height = 40,
+
+	border_inner_margin = 10,
+	border_outer_margin = 0,
+	alignment = 'bottom_left',
+	gap_x = 0,
+	gap_y = 0,
+
+-- -- Graphics settings -- #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+	-- Conky on second monitor
+	xinerama_head = 2,
+
+-- -- Text settings -- #
+-- Ícones: ${font Conky Icons by Carelli:size=14}
+	use_xft = true,
+	font = 'Ubuntu Mono:size=10',
+	xftalpha = 0.8,
+	uppercase = false,
+	default_color = '#FFFFFF',
+--	format_human_readable = true,
+
+-- Lua settings
+	lua_load = '~/.config/my_conky/conky_carelli_Painel.lua',
+  lua_draw_hook_pre = 'conky_main',
+};
+
+conky.text = [[
+
+]];
