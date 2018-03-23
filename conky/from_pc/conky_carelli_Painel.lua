@@ -227,12 +227,23 @@ function conky_main()
 --  txt="Eth:"
     log = false
 --  texto(my_bool, txt, x, y, rgb(106,90,205))
-    x=210
+    x=205
     y=17
     my_bool = true
     txt=conky_parse("${addrs enp3s0}")
     texto(my_bool,txt, x, y, rgb(106,90,205))
 
+
+    y = 32
+    txt=conky_parse("dn ${downspeedf enp3s0} кб/c")
+    texto(my_bool,txt,x,y,rgb(106,90,205))
+
+    y = 45
+    txt=conky_parse("up ${upspeedf enp3s0} кб/c")
+    texto(my_bool,txt,x,y,rgb(106,90,205))
+
+
+--[[
     -- Upload
     my_bool = false
     x=200
@@ -247,24 +258,41 @@ function conky_main()
     max = 50
     indicador_barra_h(x, y, valor, max, log, rgb(255,127,80))
 
+ ]]
+
 -- здесь был финиш, but me..
 --
     
     my_bool = true
-    y=23
+    y=13
     x=610
 --    local my_str = "${exec dmesg | tail -n3}"
     --txt = "hasfafafafafafaffha"
-    local my_str = "${exec dmesg | tail -n2}"
+    local my_str = "${exec dmesg | tail -n3}"
     txt = conky_parse(my_str)
     dokuda = string.find(txt,"]")
     txt_str = string.sub(txt,dokuda+1)
-    i_dokuda = string.find(txt_str,"%[")
+    i_dokuda = string.find(txt_str,"%[ ")
     first_stroke = string.sub(txt_str,1,i_dokuda-2)
     texto(my_bool, first_stroke, x, y, rgb(106,90,205))
     second_stroke = string.sub(txt_str,i_dokuda+14)
-    y=40
-    texto(my_bool,second_stroke, x, y, rgb(106,90,205))
+    y=30
+    local i_dokuda_1 = string.find(second_stroke,"%[ ")
+    second_real_stroke=string.sub(second_stroke,1,i_dokuda_1-2)
+    texto(my_bool,second_real_stroke, x, y, rgb(106,90,205))
+    third_stroke=string.sub(second_stroke,i_dokuda_1+14)
+    y=47
+    texto(my_bool, third_stroke,x,y,rgb(106,90,205))
+--[[
+    print("********first********")
+    print(first_stroke)
+    print("********second********")
+    print(second_stroke)
+    print("********second_real****")
+    print(second_real_stroke)
+    print("********third**********")
+    print(third_stroke)
+]]
 
 
     -- Indicadores Eth_rezerv
